@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { Grid, Navbar, Jumbotron, Button } from 'react-bootstrap';
+import { Route } from 'react-router-dom'
+import {Grid, Navbar, Nav, Jumbotron, Button, NavItem} from 'react-bootstrap'
+import {LinkContainer} from 'react-router-bootstrap'
+import Admin from './admin'
+import Home from './home'
 
 class App extends Component {
   render() {
@@ -9,26 +13,23 @@ class App extends Component {
             <Grid>
               <Navbar.Header>
                 <Navbar.Brand>
-                  <a href="/">React App</a>
+                  <a href="/">CDGD</a>
                 </Navbar.Brand>
                 <Navbar.Toggle />
               </Navbar.Header>
+              <Navbar.Collapse>
+                <Nav pullRight>
+                  <LinkContainer to="/admin">
+                    <NavItem eventKey={1}>Admin</NavItem>
+                  </LinkContainer>
+                </Nav>
+              </Navbar.Collapse>
             </Grid>
           </Navbar>
-          <Jumbotron>
-            <Grid>
-              <h1>Welcome to React</h1>
-              <p>
-                <Button
-                    bsStyle="success"
-                    bsSize="large"
-                    href="http://react-bootstrap.github.io/components.html"
-                    target="_blank">
-                  View React Bootstrap Docs
-                </Button>
-              </p>
-            </Grid>
-          </Jumbotron>
+          <main>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/admin" component={Admin} />
+          </main>
         </div>
     );
   }
