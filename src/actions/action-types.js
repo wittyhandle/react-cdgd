@@ -1,0 +1,2 @@
+// auth
+export const AUTH_PERFORM_REDIRECT = 'AUTH_PERFORM_REDIRECT';

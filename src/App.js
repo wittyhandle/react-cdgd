@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom'
-import {Grid, Navbar, Nav, Jumbotron, Button, NavItem} from 'react-bootstrap'
+import { Route, Switch } from 'react-router-dom'
+import {Grid, Navbar, Nav, NavItem} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
-import Admin from './admin'
+import AuthHandler from './admin/auth-handler'
 import Home from './home'
 
 class App extends Component {
@@ -27,8 +27,10 @@ class App extends Component {
             </Grid>
           </Navbar>
           <main>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/admin" component={Admin} />
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/admin" component={AuthHandler} />
+            </Switch>
           </main>
         </div>
     );
