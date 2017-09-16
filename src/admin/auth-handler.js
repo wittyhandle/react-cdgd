@@ -31,7 +31,7 @@ class AuthHandler extends React.Component {
       )
     } else {
       return (
-          <Redirect to="/" />
+          <Redirect to="/login" />
       )
     }
 

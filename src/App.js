@@ -4,6 +4,7 @@ import {Grid, Navbar, Nav, NavItem} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 import AuthHandler from './admin/auth-handler'
 import Home from './home'
+import Login from './admin/login'
 
 class App extends Component {
   render() {
@@ -29,6 +30,7 @@ class App extends Component {
           <main>
             <Switch>
               <Route exact path="/" component={Home} />
+              <Route exact path="/login" component={Login} />
               <Route exact path="/admin" component={AuthHandler} />
             </Switch>
           </main>
