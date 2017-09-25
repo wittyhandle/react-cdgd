@@ -14,7 +14,9 @@ class AuthHandler extends React.Component {
 
   componentDidMount() {
     const {isLoggedIn, currentUrl} = this.props
+    console.log('isLogged', this.props);
     if (!isLoggedIn) {
+      console.log('not logged in')
       this.props.actions.performRedirect(currentUrl)
     }
   }
@@ -24,6 +26,7 @@ class AuthHandler extends React.Component {
     const {isLoggedIn} = this.props
 
     if (isLoggedIn) {
+      console.log('is logged in')
       return (
           <Switch>
             <Route exact path='/admin' component={Admin}/>
@@ -41,7 +44,7 @@ class AuthHandler extends React.Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    isLoggedIn: false,
+    isLoggedIn: state.auth.isLoggedIn,
     currentUrl: ownProps.location.pathname
   }
 }

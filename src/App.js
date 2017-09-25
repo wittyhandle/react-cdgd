@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom'
+import {Link, Route, Switch} from 'react-router-dom'
 import {Grid, Navbar, Nav, NavItem} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 import AuthHandler from './admin/auth-handler'
@@ -10,11 +10,11 @@ class App extends Component {
   render() {
     return (
         <div>
-          <Navbar inverse fixedTop>
+          <Navbar inverse>
             <Grid>
               <Navbar.Header>
                 <Navbar.Brand>
-                  <a href="/">CDGD</a>
+                  <Link to="/">CDGD</Link>
                 </Navbar.Brand>
                 <Navbar.Toggle />
               </Navbar.Header>
@@ -28,11 +28,13 @@ class App extends Component {
             </Grid>
           </Navbar>
           <main>
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/admin" component={AuthHandler} />
-            </Switch>
+            <Grid>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/admin" component={AuthHandler} />
+              </Switch>
+            </Grid>
           </main>
         </div>
     );
