@@ -1,9 +1,8 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import * as authActions from '../actions/auth'
-import {Button, Col, FormControl, FormGroup, PageHeader, Panel, Row} from 'react-bootstrap'
-import {bindActionCreators} from 'redux'
-
+import React from 'react';
+import { connect } from 'react-redux';
+import * as authActions from '../actions/auth';
+import { Button, Col, FormControl, FormGroup, PageHeader, Panel, Row } from 'react-bootstrap';
+import { bindActionCreators } from 'redux';
 
 /***
  * Acts as a gateway to ensure routes defined below are protected against
@@ -12,36 +11,36 @@ import {bindActionCreators} from 'redux'
 class Login extends React.Component {
 
   constructor(props) {
-    super(props)
+    super(props);
 
     // The Login component keeps an internal state for the collected credentials from the form.
     // This will get passed onto the login action and reflected in the redux store
     this.state = {
       credentials: {
         username: '',
-        password: ''
-      }
-    }
+        password: '',
+      },
+    };
 
-    this.onChange = this.onChange.bind(this)
-    this.doLogin = this.doLogin.bind(this)
+    this.onChange = this.onChange.bind(this);
+    this.doLogin = this.doLogin.bind(this);
   }
 
   onChange(event) {
-    let credState = this.state
-    credState['credentials'][event.target.id] = event.target.value
-    return this.setState(credState)
+    let credState = this.state;
+    credState.credentials[event.target.id] = event.target.value;
+    return this.setState(credState);
   }
 
   doLogin(event) {
-    event.preventDefault()
-    this.props.actions.doLogin(this.state.credentials)
+    event.preventDefault();
+    this.props.actions.doLogin(this.state.credentials);
   }
 
   render() {
 
     let feedback = this.props.loginFailed ?
-        <Panel style={{marginTop: '20px'}} header={'Failed Login'} bsStyle="danger"/> :
+        <Panel style={ { marginTop: '20px' } } header={ 'Failed Login' } bsStyle="danger"/> :
         null;
 
     return (
@@ -79,7 +78,7 @@ class Login extends React.Component {
             </Col>
           </Row>
         </div>
-    )
+    );
 
   }
 
@@ -89,14 +88,14 @@ function mapStateToProps(state, ownProps) {
   return {
     isLoggedIn: state.auth.isLoggedIn,
     currentUrl: ownProps.location.pathname,
-    loginFailed: state.auth.loginFailed
-  }
+    loginFailed: state.auth.loginFailed,
+  };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(authActions, dispatch)
+    actions: bindActionCreators(authActions, dispatch),
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

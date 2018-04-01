@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import {Link, Route, Switch} from 'react-router-dom'
-import {Grid, Navbar, Nav, NavItem} from 'react-bootstrap'
-import {LinkContainer} from 'react-router-bootstrap'
-import AuthHandler from './admin/auth-handler'
-import Home from './home'
-import Login from './admin/login'
+import { Link, Route, Router, Switch } from 'react-router-dom';
+import { Grid, Navbar, Nav, NavItem } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+
+import Login from './admin/login';
+import { PrivateRoute } from './components/privateRoute';
+import Home from './components/home';
+import Admin from './admin/admin';
+import { history } from './components/history';
 
 class App extends Component {
   render() {
@@ -16,7 +19,7 @@ class App extends Component {
                 <Navbar.Brand>
                   <Link to="/">CDGD</Link>
                 </Navbar.Brand>
-                <Navbar.Toggle />
+                <Navbar.Toggle/>
               </Navbar.Header>
               <Navbar.Collapse>
                 <Nav pullRight>
@@ -29,11 +32,13 @@ class App extends Component {
           </Navbar>
           <main>
             <Grid>
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/admin" component={AuthHandler} />
-              </Switch>
+              <Router history={history}>
+                <div>
+                  <Route exact path="/" component={Home}/>
+                  <Route exact path="/login" component={Login}/>
+                  <PrivateRoute exact path="/admin" component={Admin}/>
+                </div>
+              </Router>
             </Grid>
           </main>
         </div>
