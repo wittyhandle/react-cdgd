@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { Link, Route, Router, Switch } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import { Grid, Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 import Login from './admin/login';
 import { PrivateRoute } from './components/privateRoute';
 import Home from './components/home';
+import Foo from './components/foo';
 import Admin from './admin/admin';
-import { history } from './components/history';
 
 class App extends Component {
   render() {
@@ -18,6 +18,7 @@ class App extends Component {
               <Navbar.Header>
                 <Navbar.Brand>
                   <Link to="/">CDGD</Link>
+                  <Link to="/foo">foo</Link>
                 </Navbar.Brand>
                 <Navbar.Toggle/>
               </Navbar.Header>
@@ -32,13 +33,12 @@ class App extends Component {
           </Navbar>
           <main>
             <Grid>
-              <Router history={history}>
-                <div>
-                  <Route exact path="/" component={Home}/>
-                  <Route exact path="/login" component={Login}/>
-                  <PrivateRoute exact path="/admin" component={Admin}/>
-                </div>
-              </Router>
+              <Switch>
+                <Route exact path="/" component={Home}/>
+                <Route exact path="/foo" component={Foo}/>
+                <Route exact path="/login" component={Login}/>
+                <PrivateRoute path="/admin" component={Admin} />
+              </Switch>
             </Grid>
           </main>
         </div>
