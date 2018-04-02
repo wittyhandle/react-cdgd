@@ -12,7 +12,7 @@ import Admin from './admin/admin';
 class App extends Component {
   render() {
     return (
-        <div>
+        <div id="cdgd">
           <Navbar inverse>
             <Grid>
               <Navbar.Header>
