@@ -1,11 +1,9 @@
 import assign from 'lodash/assign';
 import * as types from '../actions/action-types';
 
-const token = sessionStorage.getItem('cdgd-jwt');
-
 const initialState = {
   redirectTo: '',
-  isLoggedIn: !!token,
+  isLoggedIn: !!localStorage.getItem('user'),
   loginInProgress: false,
   loginSucceeded: false,
   loginFailed: false,
@@ -47,6 +45,7 @@ export default (state = initialState, action) => {
             isLoggedIn: true,
             loginFailed: false,
             loginSucceeded: true,
+            user: action.user,
           });
     default:
       return state;
