@@ -1,53 +1,51 @@
-import * as types from './action-types'
-import { history } from '../store'
+import * as types from './action-types';
+import { history } from '../store';
 
-
-
-export const performRedirect = (redirectTo) => {
-  return {
+export const performRedirect = (redirectTo) => ({
     type: types.AUTH_PERFORM_REDIRECT,
-    redirectTo
+    redirectTo,
   }
-}
+);
 
-export const doLogin = (credentials) => {
-  return (dispatch) => {
-    dispatch(loginStart())
+export const doLogin = (credentials) => ((dispatch) => {
+    dispatch(loginStart());
 
     setTimeout(() => {
 
       if (credentials.username === 'mike' && credentials.password === 'password') {
 
-        dispatch(loginSucceeded())
-        sessionStorage.setItem('cdgd-jwt', 'fake')
-        history.push('/admin')
+        let user = {
+          username: 'mike',
+          password: 'password',
+        };
+
+        dispatch(loginSucceeded(user));
+        sessionStorage.setItem('cdgd-jwt', 'fake');
+        localStorage.setItem('user', JSON.stringify(user));
+        history.push('/admin');
 
       } else {
-        dispatch(loginFailed())
+        dispatch(loginFailed());
       }
-
-    }, 500)
-
+    }, 500);
   }
-}
+);
 
-export const loginStart = () => {
-  return {
-    type: types.AUTH_LOGIN_START
+export const loginStart = () => ({
+    type: types.AUTH_LOGIN_START,
   }
-}
+);
 
-export const loginFailed = () => {
-  return {
-    type: types.AUTH_LOGIN_FAILED
+export const loginFailed = () => ({
+    type: types.AUTH_LOGIN_FAILED,
   }
-}
+);
 
 /***
  * Succeeded
  */
-export const loginSucceeded = () => {
-  return {
-    type: types.AUTH_LOGIN_SUCCEEDED
+export const loginSucceeded = (user) => ({
+    type: types.AUTH_LOGIN_SUCCEEDED,
+    user,
   }
-}
+);
