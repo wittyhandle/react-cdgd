@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 import { Grid, Navbar, Nav } from 'react-bootstrap';
 
-import LoginLink from './components/admin/loginLink';
 import { PrivateRoute } from './components/privateRoute';
 import Home from './components/home';
 import Admin from './admin/admin';
 import Login from './admin/login';
+import LoginLink from './components/admin/loginLink';
 
 class App extends Component {
   render() {
