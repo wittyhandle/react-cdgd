@@ -20,11 +20,7 @@ class LoginLink extends Component {
           }}
           >Logout</NavItem>
         </LinkContainer>
-      ) : (
-        <LinkContainer to="/login">
-          <NavItem>Login</NavItem>
-        </LinkContainer>
-      )
+      ) : null
     );
   }
 
