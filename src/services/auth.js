@@ -14,9 +14,10 @@ export const doLogin = (username, password) => {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ username, password }),
+    mode: 'cors',
   };
 
-  return fetch('/users/authenticate', reqOptions)
+  return fetch('http://localhost:7000/api/users/authenticate', reqOptions)
     .then(response => {
       if (!response.ok) {
         return Promise.reject(response.statusText);

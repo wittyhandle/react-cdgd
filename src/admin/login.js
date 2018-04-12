@@ -34,7 +34,7 @@ class Login extends React.Component {
 
   doLogin(event) {
     event.preventDefault();
-    this.props.actions.doLogin(this.state.credentials);
+    this.props.actions.login(this.state.credentials);
   }
 
   render() {

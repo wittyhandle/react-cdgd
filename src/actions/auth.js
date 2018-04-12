@@ -1,4 +1,5 @@
 import * as types from './action-types';
+import { doLogin } from '../services/auth';
 import { history } from '../store';
 
 export const performRedirect = (redirectTo) => ({
@@ -7,28 +8,22 @@ export const performRedirect = (redirectTo) => ({
   }
 );
 
-export const doLogin = (credentials) => ((dispatch) => {
+export const login = (credentials) => (
+
+  dispatch => {
     dispatch(loginStart());
-
-    setTimeout(() => {
-
-      if (credentials.username === 'mike' && credentials.password === 'password') {
-
-        let user = {
-          username: 'mike',
-          password: 'password',
-        };
-
-        dispatch(loginSucceeded(user));
-        sessionStorage.setItem('cdgd-jwt', 'fake');
-        localStorage.setItem('user', JSON.stringify(user));
-        history.push('/admin');
-
-      } else {
-        dispatch(loginFailed());
-      }
-    }, 500);
+    doLogin(credentials.username, credentials.password)
+      .then(
+        user => {
+          dispatch(loginSucceeded(user));
+          history.push('/admin');
+        },
+        error => {
+          dispatch(loginFailed(error));
+        }
+      );
   }
+
 );
 
 export const loginStart = () => ({
